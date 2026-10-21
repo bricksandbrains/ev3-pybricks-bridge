@@ -2,7 +2,7 @@
 
 This script runs a Pybricks MicroPython program on a LEGO® MINDSTORMS® EV3 from the terminal, over USB, and prints back whatever the program prints. It's what let Claude Code send programs to an EV3 and read the results without going through the browser.
 
-> **Unofficial.** It isn't made or supported by the Pybricks team. It's only been tested on **Windows** with **Pybricks EV3 firmware 4.1.0** and **pybricksdev 2.3.2** (October 2026). If the official tool adds support for this, use the official tool instead.
+> **Unofficial.** It isn't made or supported by the Pybricks team. It's only been tested on **Windows** with **Pybricks EV3 firmware 4.1.0** and **pybricksdev 2.3.2** (October 2026). If the official tool adds support for this, use the official tool instead. Tracking issue: [pybricks/support#2869](https://github.com/pybricks/support/issues/2869).
 
 ## Why it exists
 
