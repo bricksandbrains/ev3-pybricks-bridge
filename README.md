@@ -2,6 +2,15 @@
 
 This script runs a Pybricks MicroPython program on a LEGO® MINDSTORMS® EV3 from the terminal, over USB, and prints back whatever the program prints. It's what let Claude Code send programs to an EV3 and read the results without going through the browser.
 
+> **Update (October 21, 2026): you probably don't need this any more.** Pybricks has released a new official command-line tool, [`pb`](https://github.com/pybricks/pybricks-tools) (`pybricks-cli` 1.0.0b1, beta). Tested on the same Windows PC and EV3 (firmware 4.1.0), it found the brick over USB and ran programs with no bridge and no driver changes, and the program's printed output arrived live. To use it:
+>
+> ```powershell
+> uv tool install pybricks-cli
+> pb run hello.py --wait
+> ```
+>
+> `pb` keeps the brick connected through a background service. Run `pb service stop` before using Pybricks Code or this bridge, or the port stays busy (`Access is denied`). This repo stays up as the companion to the video and for its notes on how the serial messages are packaged.
+
 > **Unofficial.** It isn't made or supported by the Pybricks team. It's only been tested on **Windows** with **Pybricks EV3 firmware 4.1.0** and **pybricksdev 2.3.2** (October 2026). If the official tool adds support for this, use the official tool instead. Tracking issue: [pybricks/support#2869](https://github.com/pybricks/support/issues/2869).
 
 ## Why it exists
@@ -73,7 +82,7 @@ After that, Claude Code can write a program, run it, read what the brick prints 
 
 | Symptom | Cause | Fix |
 |---|---|---|
-| `Could not connect on COM6: ... Access is denied` | Another app has the port open, usually a Pybricks Code tab | Close the tab (or the browser) and run it again |
+| `Could not connect on COM6: ... Access is denied` | Another app has the port open: usually a Pybricks Code tab, or `pb`'s background service | Close the tab (or the browser), or run `pb service stop`, and try again |
 | `EV3 serial port not found` | The brick is off, unplugged, or doesn't show up as a serial port | Turn it on and check Device Manager under **Ports (COM & LPT)** |
 | The EV3 no longer shows under Ports, and Pybricks Code can't connect | Its driver was swapped to WinUSB (for example with Zadig) | In Device Manager, uninstall the device, tick **Delete the driver software**, then unplug it and plug it back in. **Don't** swap drivers on a Pybricks EV3 |
 | `NameError` on line 1 of your program | The file was saved with a UTF-8 BOM (Windows PowerShell 5 `Set-Content -Encoding utf8` adds one) | Save it as UTF-8 without a BOM |
